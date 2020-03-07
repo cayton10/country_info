@@ -8848,6 +8848,13 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
 
-    .title{
-      color: white;
-    }
+    input:focus::-webkit-input-placeholder {
+      opacity: 0;
+  }
+
+  .added-img{
+    height: 250px;
+    width: 400px;
+    float: left;
+  }
+

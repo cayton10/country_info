@@ -72,11 +72,10 @@
           <div class="col-md-12 tabulation-search">
             <div class="element-animate">
               <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link p-3 active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><span>01</span> Country</a>
-                <a class="nav-link p-3" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><span>02</span> Capital City</a>
-                <a class="nav-link p-3" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span>03</span> Currency</a>
-                <a class="nav-link p-3" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><span>04</span> Flag</a>
-                <a class="nav-link p-3" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><span>05</span> Population</a>
+                <a class="nav-link p-3 active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><span>01</span> Capital City / Country</a>
+                <a class="nav-link p-3" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><span>02</span> Currency</a>
+                <a class="nav-link p-3" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><span>03</span> Flag</a>
+                <a class="nav-link p-3" id="v-pills-population-tab" data-toggle="pill" href="#v-pills-population" role="tab" aria-controls="v-pills-population" aria-selected="false"><span>04</span> Population</a>
 
               </div>
             </div>
@@ -89,9 +88,11 @@
                 <div class="block-17">
                   <form action="" method="post" class="d-block d-lg-flex">
                     <div class="fields d-block d-lg-flex">
-                      <div class="select-wrap one-third">                      
-                        <select name="country" id="country-dropdown" class="form-control">
-                          <option value="">Select Country</option>
+                      <div class="select-wrap one-third text-center">
+                        <input type="text" name="country" id="country-text" class="form-control" placeholder="Enter country name">                  
+                          <h2 id='or'>or</h2>
+                        </input>                      
+                        <select name="capital" id="capital-dropdown" class="form-control">                  
                         </select>
                       </div>
                     </div>                   
@@ -99,68 +100,43 @@
                 </div>
               </div>
 
-<!-- -------------------------- CAPITAL CITY INFO -------------------------- -->
+<!-- ---------------------------- CURRENCY INFO ---------------------------- -->
 
-              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
-                    <div class="fields d-block d-lg-flex">
-                      
-                      <div class="select-wrap one-third">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                      </div>
-                    </div>
-                    
-                  </form>
-                </div>
-              </div>
               <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                 <div class="block-17">
                   <form action="" method="post" class="d-block d-lg-flex">
                     <div class="fields d-block d-lg-flex">
-                      <div class="textfield-search one-third"><input type="text" class="form-control" placeholder="Search Location"></div>
-
-                      <div class="check-in one-third"><input type="text" id="start_date" class="form-control" placeholder="Start date"></div>
-
-                      <div class="check-out one-third"><input type="text" id="return_date" class="form-control" placeholder="Return date"></div>
                       <div class="select-wrap one-third">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                          <option value="">Guest</option>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
+                        <div id="currency"></div>                      
                       </div>
                     </div>
-                    <input type="submit" class="search-submit btn btn-primary" value="Find Car">  
                   </form>
                 </div>
               </div>
-              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
-                    <div class="fields d-block d-lg-flex">
-                      <div class="textfield-search one-third one-third-1"><input type="text" class="form-control" placeholder="Search Location"></div>
 
+<!-- ------------------------------ FLAG INFO ------------------------------ -->
 
-                      <div class="check-out one-third one-third-1"><input type="text" id="start_date" class="form-control" placeholder="Check-out date"></div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <div class="block-17">
+                    <form action="" method="post" class="d-block d-lg-flex">                 
+                      <div class="select-wrap one-third">
+                        <div id="flag"></div>
+                      </div>                                        
+                    </form>
+                  </div>
+                </div>
 
-                      <div class="select-wrap one-third one-third-1">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                          <option value="">Categories</option>
-                          <option value="">Suite</option>
-                          <option value="">Super Deluxe</option>
-                          <option value="">Balcony</option>
-                          <option value="">Economy</option>
-                          <option value="">Luxury</option>
-                        </select>
-                      </div>
-                    </div>
-                    <input type="submit" class="search-submit btn btn-primary" value="Find Cruise">  
-                  </form>
+<!-- --------------------------- POPULATION INFO --------------------------- -->
+
+                <div class="tab-pane fade" id="v-pills-population" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <div class="block-17">
+                    <form action="" method="post" class="d-block d-lg-flex">
+
+                      <div class="select-wrap one-third">
+                        <div id="pop"></div>
+                      </div>                                                                                      
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -174,17 +150,14 @@
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
-          
-          
-          
-          
+               
           </div>
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
               <ul class="ftco-footer-social list-unstyled float-md-right float-lft">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-github-alt"></span></a></li>
               </ul>
             </div>
           </div>

@@ -25,38 +25,43 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- ---------------------------- jquery ui css ---------------------------- -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet"/>
+
+
   </head>
   <body>
     
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('images/bg_4.jpg');">
+      <div class="slider-item" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/%D0%90%D0%B1%D1%83-%D0%94%D0%B0%D0%B1%D0%B8_%28Abu_Dhabi%29_-_panoramio_%281%29.jpg/1200px-%D0%90%D0%B1%D1%83-%D0%94%D0%B0%D0%B1%D0%B8_%28Abu_Dhabi%29_-_panoramio_%281%29.jpg');">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3">How much is this gonna cost?</h1>
+              <h1 class="mb-3">I thought the rupee was the currency of Hyrule :/</h1>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="slider-item" style="background-image: url('images/bg_1.jpg');">
+      <div class="slider-item" style="background-image: url('https://www.formula1.com/content/dam/fom-website/manual/XPB_Images/XPB_1025166_HiRes.jpg.transform/9col/image.jpg');">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3">I thought rupees were only in Zelda...</h1>
+              <h1 class="mb-3">Bahrain is more than a racetrack?</h1>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="slider-item" style="background-image: url('images/bg_3.jpg');">
+      <div class="slider-item" style="background-image: url('https://www.worldatlas.com/r/w1200-h701-c1200x701/upload/15/d1/1f/shutterstock-125398649.jpg');">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3">Bahrain is a country?!?</h1>
+              <h1 class="mb-3">There's a country with less than 1,000 ppl!</h1>
             </div>
           </div>
         </div>
@@ -86,10 +91,10 @@
 
               <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
+                  <form action="" method="post" class="d-block d-lg-flex" id='search-form'>
                     <div class="fields d-block d-lg-flex">
                       <div class="select-wrap one-third text-center">
-                        <input type="text" name="country" id="country-text" class="form-control" placeholder="Enter country name">                  
+                        <input type="text" name="country" id="country-text" class='form-control' placeholder="Enter country name">                  
                           <h2 id='or'>or</h2>
                         </input>                      
                         <select name="capital" id="capital-dropdown" class="form-control">                  
@@ -104,10 +109,12 @@
 
               <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                 <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
-                    <div class="fields d-block d-lg-flex">
+                  <form action="" method="post" class="d-block">
+                    <div class="fields d-block">
                       <div class="select-wrap one-third">
-                        <div id="currency"></div>                      
+                        <input type='text' disabled='true' id="currency-code" class='form-control' placeholder='Currency Code'></input>                     
+                        <input type='text' disabled='true' id="currency-name" class='form-control' placeholder='Currency Name'></input>  
+                        <input type='text' disabled='true' id="currency-sym" class='form-control' placeholder='Currency Symbol'></input>  
                       </div>
                     </div>
                   </form>
@@ -118,7 +125,7 @@
 
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <div class="block-17">
-                    <form action="" method="post" class="d-block d-lg-flex">                 
+                    <form action="" method="post" class="d-block">                 
                       <div class="select-wrap one-third">
                         <div id="flag"></div>
                       </div>                                        
@@ -130,10 +137,9 @@
 
                 <div class="tab-pane fade" id="v-pills-population" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                   <div class="block-17">
-                    <form action="" method="post" class="d-block d-lg-flex">
-
-                      <div class="select-wrap one-third">
-                        <div id="pop"></div>
+                    <form action="" method="post">
+                      <div class="select-wrap one-half">
+                        <input type='text' disabled='true' id="pop" class='form-control' placeholder='Population'></input>
                       </div>                                                                                      
                     </form>
                   </div>
@@ -155,9 +161,9 @@
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
               <ul class="ftco-footer-social list-unstyled float-md-right float-lft">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-linkedin"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-github-alt"></span></a></li>
+                <li class="ftco-animate"><a href="https://twitter.com/BenCayton" target="_blank"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.linkedin.com/in/bencayton/" target="_blank"><span class="icon-linkedin"></span></a></li>
+                <li class="ftco-animate"><a href="https://github.com/cayton10" target="_blank"><span class="icon-github-alt"></span></a></li>
               </ul>
             </div>
           </div>
@@ -178,7 +184,7 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.15.0/d3.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -195,7 +201,11 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/country.js"></script>
+
+<!-- ------------------------------ jquery ui ------------------------------ -->
+
+<script src="js/typeahead.js"></script>   
+<script src="js/country.js"></script>
     
   </body>
 </html>

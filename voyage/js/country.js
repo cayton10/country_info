@@ -56,7 +56,7 @@ $(document).ready(function(){
                                     $('#currency-name').val('Name: ' + entry.currencies[0].name);
                                     $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
                                     $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
-                                    $('#pop').val(entry.name + ' population: ' + entry.population.toLocaleString("en-US"));
+                                    $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));
                                                                                 //Found '.toLocaleString' on Stack Overflow forum
                                                                                 //https://stackoverflow.com/questions/52795097/json-numbers-formatted-with-commas
                                 }
@@ -118,7 +118,7 @@ $(document).ready(function(){
                 $.ajax(//Ajax call to restcountries
                     {
                         //Partial name version does not work since results are specific
-                        url: 'https://restcountries.eu/rest/v2/name/' + country + '?fullText=true',
+                        url: 'https://restcountries.eu/rest/v2/name/' + country, //+ '?fullText=true',
                         dataType: 'json',
                         method: 'get',
                         data: 'none',
@@ -126,14 +126,14 @@ $(document).ready(function(){
                         {
                             $.each(data, function(key, entry)//iterate through countries API. 
                             {       //Ignore case
-                                if (country.toLowerCase() == entry.name.toLowerCase()) //If selected capital city == capital from API...
+                                if (entry.name.toLowerCase().str.includes(country.toLowerCase())) //If selected capital city == capital from API...
                                 {   //Spit out all of this info on identified tabs
                                     $('#capital-dropdown').val(entry.capital);
                                     $('#currency-code').val('Code: ' + entry.currencies[0].code);
                                     $('#currency-name').val('Name: ' + entry.currencies[0].name);
                                     $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
                                     $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
-                                    $('#pop').val(entry.name + ' population: ' + entry.population.toLocaleString("en-US"));
+                                    $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));
                                                                                
                                 }
                             });

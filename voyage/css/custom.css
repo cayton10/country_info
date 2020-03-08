@@ -1,0 +1,9 @@
+.owl-carousel.owl-drag .owl-item {
+    touch-action: pan-y;
+}
+
+#flag {
+    width: 1rem;
+    height: 1rem;
+    padding-bottom: 10px;
+}

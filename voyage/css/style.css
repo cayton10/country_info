@@ -8860,6 +8860,7 @@ textarea.form-control {
     height: 250px;
     width: 400px;
     float: left;
+    padding-bottom: 30px;
   }
 
   .tt-query {
@@ -8909,4 +8910,9 @@ textarea.form-control {
     100% {
       transform: rotate(359deg);
     }
+  }
+
+  .owl-carousel.owl-drag .owl-item {
+    -ms-touch-action: pan-y !important;
+    touch-action: pan-y !important;
   }

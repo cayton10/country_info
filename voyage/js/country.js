@@ -125,7 +125,7 @@ $(document).ready(function(){
                         success: function(data)
                         {
                             $.each(data, function(key, entry)//iterate through countries API. 
-                            {       //Ignore case
+                            {       //Ignore case && if user input is substring of data, appropriate function
                                 if (entry.name.toLowerCase().indexOf(country.toLowerCase()) >= 0) //If selected capital city == capital from API...
                                 {   //Spit out all of this info on identified tabs
                                     $('#capital-dropdown').val(entry.capital);
@@ -133,8 +133,7 @@ $(document).ready(function(){
                                     $('#currency-name').val('Name: ' + entry.currencies[0].name);
                                     $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
                                     $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
-                                    $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));
-                                                                               
+                                    $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));ß                                             
                                 }
                             });
                         },

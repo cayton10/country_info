@@ -126,7 +126,7 @@ $(document).ready(function(){
                         {
                             $.each(data, function(key, entry)//iterate through countries API. 
                             {       //Ignore case
-                                if (entry.name.toLowerCase().str.includes(country.toLowerCase())) //If selected capital city == capital from API...
+                                if (entry.name.toLowerCase().indexOf(country.toLowerCase()) >= 0) //If selected capital city == capital from API...
                                 {   //Spit out all of this info on identified tabs
                                     $('#capital-dropdown').val(entry.capital);
                                     $('#currency-code').val('Code: ' + entry.currencies[0].code);

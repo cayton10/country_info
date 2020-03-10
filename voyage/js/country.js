@@ -126,7 +126,10 @@ $(document).ready(function(){
                         {
                             $.each(data, function(key, entry)//iterate through countries API. 
                             {       //Ignore case && if user input is substring of data, appropriate function
-                                if (entry.name.toLowerCase().indexOf(country.toLowerCase()) >= 0) //If selected capital city == capital from API...
+                                if (entry.name.toLowerCase().indexOf(country.toLowerCase()) >= 0) //Did this because of certain
+                                                                                                  //country names like 'Russian Federation'
+                                                                                                  //You couldn't just search 'russia' and
+                                                                                                  //recieve information about the country.
                                 {   //Spit out all of this info on identified tabs
                                     $('#capital-dropdown').val(entry.capital);
                                     $('#currency-code').val('Code: ' + entry.currencies[0].code);

@@ -34,7 +34,7 @@ $(document).ready(function(){
         $.each(sortedCity, function (key, entry) {
             //There are some empty capital values for locales such as Antarctica
             if (entry.capital !== ''){
-                dropdown.append($('<option></option>').text(entry.capital));//Append to select <option>s
+                dropdown.append($('<option></option>').text(entry.capital).attr('country', entry.name));//Append to select <option>s
             }
             //Function to populate #country-name text input field and other info
             $('#capital-dropdown').change(function (){

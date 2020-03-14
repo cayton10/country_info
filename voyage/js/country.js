@@ -1,7 +1,6 @@
 /* ------------------------- when document is ready ------------------------- */
 
 $(document).ready(function(){
-
     /* -------------------------- declare dropdown var -------------------------- */
 
     let dropdown = $('#capital-dropdown');
@@ -27,7 +26,6 @@ $(document).ready(function(){
             if (a.capital < b.capital) {
                 return -1;
             }
-
             return 0;
         });
                 //Loop through JSON capitals
@@ -35,74 +33,45 @@ $(document).ready(function(){
             //There are some empty capital values for locales such as Antarctica
             if (entry.capital !== ''){
                 dropdown.append($('<option></option>').text(entry.capital).attr('country', entry.name));//Append to select <option>s
-            }
-            //Function to populate #country-name text input field and other info
-            $('#capital-dropdown').change(function (){
-                var city = $(this).val(); //Store selected capital in variable 'city'
-                $.ajax(
-                    {
-                        url: 'https://restcountries.eu/rest/v2/capital/' + city,
-                        dataType: 'json',
-                        method: 'get',
-                        data: 'none',
-                        success: function(data)
-                        {
-                            $.each(data, function(key, entry)//iterate through countries API. 
-                            {
-                                if (city == entry.capital) //If selected capital city == capital from API...
-                                {   //Spit out all of this info on identified tabs
-                                    $('#country-text').val(entry.name);
-                                    $('#currency-code').val('Code: ' + entry.currencies[0].code);
-                                    $('#currency-name').val('Name: ' + entry.currencies[0].name);
-                                    $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
-                                    $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
-                                    $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));
-                                                                                //Found '.toLocaleString' on Stack Overflow forum
-                                                                                //https://stackoverflow.com/questions/52795097/json-numbers-formatted-with-commas
-                                }
-                            });
-                        }
-                    });
-            });
+            }                                                           //Add attr to option with country of index
+
         });
+            //Function to populate #country-name text input field and other info
+        $(dropdown).change(function (){
+            var city = $(this).val(); //Store selected capital in variable 'city'
+            var country = $('option:selected', this).attr('country');
+            $.ajax(
+                {
+                    url: 'https://restcountries.eu/rest/v2/capital/' + city,
+                    dataType: 'json',
+                    method: 'get',
+                    data: 'none',
+                    success: function(data)
+                    {
+                        $.each(data, function(key, entry)//iterate through countries API. 
+                        {
+                            if (city == entry.capital) //If selected capital city == capital from API...
+                            {   //Spit out all of this info on identified tabs
+                                $('#country-text').val(country);
+                                $('#currency-code').val('Code: ' + entry.currencies[0].code);
+                                $('#currency-name').val('Name: ' + entry.currencies[0].name);
+                                $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
+                                $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
+                                $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));
+                                                                            //Found '.toLocaleString' on Stack Overflow forum
+                                                                            //https://stackoverflow.com/questions/52795097/json-numbers-formatted-with-commas
+                            }
+                        });
+                    }
+                });
+        }); 
     });
 
     /* -------------------------------------------------------------------------- */
     /*                             TEXT INPUT FUNCTION                            */
     /* -------------------------------------------------------------------------- */
-    
-    /*var countries = new Bloodhound({
-        datumTokenizer: function(countries) {
-            return Bloodhound.tokenizers.whitespace(countries.value);
-        },
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        limit: 3,
-        prefetch: allName,
-        remote: {
-          url: allName,
-          wildcard: '%QUERY',
-          filter: function(response){
-              return response.countries;
-          }
-        }
-      });
 
-      // init suggestion engine
-      countries.initialize();
-      
-      $('#country-text').typeahead(
-        {   hint: true, 
-            highlight: true,
-            minLength: 1
-        },
-        {
-          name: 'countries',
-          displayKey: function(countries) {
-              return countries.name;
-          },
-        });
-        source: countries.ttAdapter()*/
-
+/* -------------------------- autocomp ajax lookup -------------------------- */
 
         //Prevent default 'enter' keystroke event//
         $('#country-text').keypress(function (event){
@@ -136,7 +105,7 @@ $(document).ready(function(){
                                     $('#currency-name').val('Name: ' + entry.currencies[0].name);
                                     $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
                                     $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
-                                    $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));ß                                             
+                                    $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));                                             
                                 }
                             });
                         },

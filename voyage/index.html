@@ -27,9 +27,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/custom.css">
 
-    <!-- ---------------------------- jquery ui css ---------------------------- -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet"/>
-
 
   </head>
   <body>
@@ -97,7 +94,10 @@
                       <div class="select-wrap one-third text-center">
                         <input type="text" name="country" id="country-text" class='form-control' placeholder="Enter country name" autocomplete='off'>                  
                           <h2 id='or'>or</h2>
-                        </input>                      
+                        </input> 
+                        <div>
+                          Selected Option : <span class="label label-default" id="selected_option"></span>
+                        </div>                     
                         <select name="capital" id="capital-dropdown" class="form-control">                  
                         </select>
                       </div>
@@ -203,6 +203,7 @@
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
   <script src="js/country.js"></script>
+
     
   </body>
 </html>

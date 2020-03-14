@@ -24,8 +24,9 @@
     
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>    
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/style.css">
 
 
   </head>
@@ -92,12 +93,12 @@
                   <form action="" method="post">
                     
                       <div class="select-wrap one-third text-center">
-                        <input type="text" name="country" id="country-text" class='form-control' placeholder="Enter country name" autocomplete='off'>                  
+                        <input type="text" name="country" id="country-text" class='form-control ui-autocomplete' placeholder="Enter country name" autocomplete='off'>
+                        <div id="menu-container">
+                        </div>
+                        <div id='error'>No country by that designation. Try again</div>                  
                           <h2 id='or'>or</h2>
-                        </input> 
-                        <div>
-                          Selected Option : <span class="label label-default" id="selected_option"></span>
-                        </div>                     
+                        </input>                      
                         <select name="capital" id="capital-dropdown" class="form-control">                  
                         </select>
                       </div>
@@ -202,6 +203,10 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+  crossorigin="anonymous"></script>  
   <script src="js/country.js"></script>
 
     

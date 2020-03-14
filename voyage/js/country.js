@@ -5,11 +5,14 @@ $(document).ready(function(){
 
     let dropdown = $('#capital-dropdown');
     dropdown.append('<option selected="true" disabled>Choose Capital City</option>');
+    var nameArray = [];
+    var country;
+    $('#error').hide();
 
     /* ------------------- restCountries API for ALL countries ------------------ */
               //Filter results for only what is needed for this application//
     const allCity = 'https://restcountries.eu/rest/v2/all?fields=name;capital;currencies;flag;population'
-    const allName = 'https://restcountries.eu/rest/v2/all?fields=name' 
+    const autoAPI = 'https://restcountries.eu/rest/v2/' + country + '?fields=name;capital;currencies;flag;population'
     /* --------------------- populate dropdown w/ json data --------------------- */
     /* ------------------- $.getJSON() shorthand for $.ajax() ------------------- */
 
@@ -30,11 +33,12 @@ $(document).ready(function(){
         });
                 //Loop through JSON capitals
         $.each(sortedCity, function (key, entry) {
+                
+            nameArray.push(entry.name);
             //There are some empty capital values for locales such as Antarctica
             if (entry.capital !== ''){
                 dropdown.append($('<option></option>').text(entry.capital).attr('country', entry.name));//Append to select <option>s
             }                                                           //Add attr to option with country of index
-
         });
             //Function to populate #country-name text input field and other info
         $(dropdown).change(function (){
@@ -71,7 +75,54 @@ $(document).ready(function(){
     /*                             TEXT INPUT FUNCTION                            */
     /* -------------------------------------------------------------------------- */
 
-/* -------------------------- autocomp ajax lookup -------------------------- */
+    /* -------------------------------------------------------------------------- */
+    /*                    fix autocomplete suggestion box width                   */
+    /* ------------------------------ pulled from: ------------------------------ */
+    /*https://info.michael-simons.eu/2013/05/02/how-to-fix-jquery-uis-autocomplete-width/*/
+    /* -------------------------------------------------------------------------- */
+    $.extend($.ui.autocomplete.prototype.options, {
+        open: function(event, ui) {
+            $(this).autocomplete("widget").css({
+                "width": ($(this).width() + "px")
+            });
+        }
+    });
+    /* -------------------------- autocomplete function ------------------------- */
+
+    $('#country-text').autocomplete({
+        minLength: 2,
+        source: nameArray, //Uses previously stored array of objects for reference
+        select: function() //Upon selection of country () =>
+        {   
+            console.log($('#country-text').val()); //Print name of country to console
+            var country = $('#country-text').val(); //Store selected country name for use in ajax call
+ 
+            $.ajax(//Ajax call to restcountries)
+                    {                                                  //insert country name into url - filter resutls for callbacks
+                        url: 'https://restcountries.eu/rest/v2/name/' + country + '?fields=capital;currencies;flag;population',
+                        dataType: 'json',
+                        method: 'get',
+                        data: 'none',
+                        success: function(data)
+                        {
+                            $.each(data, function(key, entry)//iterate through countries API. 
+                                {      
+                                    {   //Spit out all of this info on identified tabs
+                                        $('#capital-dropdown').val(entry.capital);
+                                        $('#currency-code').val('Code: ' + entry.currencies[0].code);
+                                        $('#currency-name').val('Name: ' + entry.currencies[0].name);
+                                        $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
+                                        $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
+                                        $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));                                             
+                                    }
+                                });
+                        },
+
+                    });
+        }
+    });
+
+
 
         //Prevent default 'enter' keystroke event//
         $('#country-text').keypress(function (event){
@@ -79,10 +130,10 @@ $(document).ready(function(){
             //Must preventDefault to keep from reloading page
             if (event.keyCode === 13) {
                 event.preventDefault();
-                var country = $('#country-text').val();
-                console.log(country);
+                var country = $('#country-text').val(); //Set value of country var to input field after 'keypress 13' / 'enter'
+                console.log(country); //Prints to console for debugging
             }
-            //If user presses enter key...
+            //If user presses enter key... Send ajax call
             if (event.keyCode === 13) {
                 $.ajax(//Ajax call to restcountries
                     {
@@ -110,11 +161,19 @@ $(document).ready(function(){
                             });
                         },
                         //error handling for misspelled or other
-                        error: function(xhr){
-                            alert(xhr.status + ": No country by that name. You can check your spelling here: " + allName);
+                        error: function(){
+                            $('#error').show("drop", {direction: "down" }, 400);
                         }
                          
                     });
             }
         });
+
+    /* ---------------------- Reset error message dropdown ---------------------- */
+        $('#country-text').click(function(){
+            if ($('#error') != 'hidden') {
+                $('#error').hide("drop", {direction: "up" }, 200);
+            }
+        });
+        
 });

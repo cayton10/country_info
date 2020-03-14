@@ -7,3 +7,25 @@
     height: 1rem;
     padding-bottom: 10px;
 }
+
+.ui-menu .ui-menu-item a{
+    color: #96f226;
+    border-radius: 0px;
+    border: 1px solid #454545;
+}
+
+.ui-autocomplete {
+    position: relative;
+    border-radius: 5px;
+}
+
+#error{
+    background: red;
+    color: white;
+    height: 40px;
+}
+
+#menu-container{
+    width: inherit;
+    justify-content: flex-start;
+}

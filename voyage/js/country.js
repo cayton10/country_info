@@ -34,11 +34,12 @@ $(document).ready(function(){
                 //Loop through JSON capitals
         $.each(sortedCity, function (key, entry) {
                 
-            nameArray.push(entry.name);
+            
             //There are some empty capital values for locales such as Antarctica
             if (entry.capital !== ''){
                 dropdown.append($('<option></option>').text(entry.capital).attr('country', entry.name));//Append to select <option>s
-            }                                                           //Add attr to option with country of index
+                nameArray.push(entry.name);
+            }   //Populate suggestion array                                //Add attr to option with country of index
         });
             //Function to populate #country-name text input field and other info
         $(dropdown).change(function (){
@@ -94,7 +95,6 @@ $(document).ready(function(){
         source: nameArray, //Uses previously stored array of objects for reference
         select: function(event, ui) //Upon selection of country () =>
         {   
-            alert(ui.item);
             console.log($('#country-text').val()); //Print name of country to console
             var country = $('#country-text').val(); //Store selected country name for use in ajax call
  

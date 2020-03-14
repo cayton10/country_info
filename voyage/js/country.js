@@ -92,14 +92,15 @@ $(document).ready(function(){
     $('#country-text').autocomplete({
         minLength: 2,
         source: nameArray, //Uses previously stored array of objects for reference
-        select: function() //Upon selection of country () =>
+        select: function(event, ui) //Upon selection of country () =>
         {   
+            alert(ui.item);
             console.log($('#country-text').val()); //Print name of country to console
             var country = $('#country-text').val(); //Store selected country name for use in ajax call
  
             $.ajax(//Ajax call to restcountries)
                     {                                                  //insert country name into url - filter resutls for callbacks
-                        url: 'https://restcountries.eu/rest/v2/name/' + country + '?fields=capital;currencies;flag;population',
+                        url: 'https://restcountries.eu/rest/v2/name/' + country + '?fullText=true',
                         dataType: 'json',
                         method: 'get',
                         data: 'none',
@@ -116,7 +117,7 @@ $(document).ready(function(){
                                         $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));                                             
                                     }
                                 });
-                        },
+                        }
 
                     });
         }

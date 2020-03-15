@@ -7,6 +7,9 @@ $(document).ready(function(){
     dropdown.append('<option selected="true" disabled>Choose Capital City</option>');
     var nameArray = [];
     var country;
+    //currency code variable declaration
+    var code;
+    var symbol;
     $('#error').hide();
 
     /* ------------------- restCountries API for ALL countries ------------------ */
@@ -45,6 +48,7 @@ $(document).ready(function(){
         $(dropdown).change(function (){
             var city = $(this).val(); //Store selected capital in variable 'city'
             var country = $('option:selected', this).attr('country');
+            //Ajax call to rest countries API
             $.ajax(
                 {
                     url: 'https://restcountries.eu/rest/v2/capital/' + city,
@@ -59,13 +63,31 @@ $(document).ready(function(){
                             {   //Spit out all of this info on identified tabs
                                 $('#country-text').val(country);
                                 $('#currency-code').val('Code: ' + entry.currencies[0].code);
+                                //Capture currency code in variable for USD conversion
+                                code = entry.currencies[0].code;
                                 $('#currency-name').val('Name: ' + entry.currencies[0].name);
                                 $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
+                                symbol = entry.currencies[0].symbol;
                                 $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
                                 $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));
                                                                             //Found '.toLocaleString' on Stack Overflow forum
                                                                             //https://stackoverflow.com/questions/52795097/json-numbers-formatted-with-commas
                             }
+                        });
+                    }
+                });
+            //Ajax call to free.currconv API
+            $.ajax(
+                {
+                    url: 'https://free.currconv.com/api/v7/convert?q=' + code + '_USD&compact=ultra&apiKey=0efe8ba1797af83c25f7',
+                    dataType: 'json',
+                    method: 'get',
+                    data: 'none',
+                    success: function(data)
+                    {
+                        $.each(data, function(key, entry)
+                        {
+                            $('#currency-conv').val(symbol + "1.00 = $" + entry.toFixed(2));
                         });
                     }
                 });
@@ -111,8 +133,11 @@ $(document).ready(function(){
                                     {   //Spit out all of this info on identified tabs
                                         $('#capital-dropdown').val(entry.capital);
                                         $('#currency-code').val('Code: ' + entry.currencies[0].code);
+                                        //Capture currency code in variable for USD conversion
+                                        code = entry.currencies[0].code;
                                         $('#currency-name').val('Name: ' + entry.currencies[0].name);
                                         $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
+                                        symbol = entry.currencies[0].symbol;
                                         $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
                                         $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));                                             
                                     }
@@ -120,6 +145,21 @@ $(document).ready(function(){
                         }
 
                     });
+                //Ajax call to free.currconv API
+            $.ajax(
+                {
+                    url: 'https://free.currconv.com/api/v7/convert?q=' + code + '_USD&compact=ultra&apiKey=0efe8ba1797af83c25f7',
+                    dataType: 'json',
+                    method: 'get',
+                    data: 'none',
+                    success: function(data)
+                    {
+                        $.each(data, function(key, entry)
+                        {
+                            $('#currency-conv').val(symbol + "1.00 = $" + entry.toFixed(2));
+                        });
+                    }
+                });
         }
     });
 
@@ -154,8 +194,11 @@ $(document).ready(function(){
                                 {   //Spit out all of this info on identified tabs
                                     $('#capital-dropdown').val(entry.capital);
                                     $('#currency-code').val('Code: ' + entry.currencies[0].code);
+                                    //Capture currency code in variable for USD conversion
+                                    code = entry.currencies[0].code;
                                     $('#currency-name').val('Name: ' + entry.currencies[0].name);
                                     $('#currency-sym').val('Symbol: ' + entry.currencies[0].symbol);
+                                    symbol = entry.currencies[0].symbol;
                                     $('#flag').html("<img class='added-img' src='" + entry.flag + "' />");
                                     $('#pop').val(entry.name + ' pop: ' + entry.population.toLocaleString("en-US"));                                             
                                 }
@@ -166,6 +209,20 @@ $(document).ready(function(){
                             $('#error').show("drop", {direction: "down" }, 400);
                         }
                          
+                    });
+                $.ajax(
+                    {
+                        url: 'https://free.currconv.com/api/v7/convert?q=' + code + '_USD&compact=ultra&apiKey=0efe8ba1797af83c25f7',
+                        dataType: 'json',
+                        method: 'get',
+                        data: 'none',
+                        success: function(data)
+                        {
+                            $.each(data, function(key, entry)
+                            {
+                                $('#currency-conv').val(symbol + "1.00 = $" + entry.toFixed(2));
+                            });
+                        }
                     });
             }
         });
